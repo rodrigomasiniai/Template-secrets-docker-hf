@@ -7,6 +7,6 @@ COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 COPY ./main.py /code/app/main.py
-RUN --mount=type=secret,example=EXAMPLE,required=true cat /run/secrets/EXAMPLE > /test
+RUN --mount=type=secret,id=EXAMPLE,required=true cat /run/secrets/EXAMPLE > /test
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
